@@ -6,7 +6,8 @@
     "scripts": {
         "start": "npm run server && node src/index.js",
         "server": "nodemon src/index.js",
-        "dev": "npm run server"
+        "dev": "npm run server", 
+        "hello": "echo 'Hello World'"
     },
     "repository": {
         "type": "git",
