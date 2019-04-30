@@ -37,7 +37,6 @@ exports.registerUser = (req, res, next) => {
         });
 
     } else if (req.body.logemail && req.body.logpassword) {
-        console.log('', req.body.logemail, req.body.logpassword)
         Attendee.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
             if (error || !user) {
                 var err = new Error('Wrong email or password.');
@@ -59,30 +58,6 @@ exports.registerUser = (req, res, next) => {
 exports.loginPage = (req,res, next) => {
     res.render('login')
 }
-
-/// TODO: REMOVE AFTER TESTING
-exports.login = (req, res, next) => {
-    Attendee.findById(req.session.userId)
-        .exec(function (error, user) {
-            if (error) {
-                return next(error);
-            } else {
-                if (user === null) {
-                    var err = new Error('Not authorized! Go back!');
-                    err.status = 400;
-                    return next(err);
-                } else {
-                    return res.render('homepage', {
-                        data: {
-                            loggedIn: '<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + 
-                            user.email + '<br><a type="button" href="/logout">Logout</a>' 
-                        }
-                    });
-                }
-            }
-        });
-}
-
 
 // GET for logout
 exports.logout = async (req, res, next) => { {
