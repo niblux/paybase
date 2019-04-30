@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Talk = new mongoose.Schema({
     id:Number,
-    speakers: Array,
+    speakers: String,
     availableSpaces: Number,
     title: String,
     description:String,

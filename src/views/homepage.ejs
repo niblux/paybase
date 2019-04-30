@@ -2,10 +2,12 @@
 
 <div class="container">
 
+<p><%= sessionID %></p>
+
 <div class="col">
     <h2>Speakers</h2>
     <ul>
-    <% data.speakers.forEach(speaker => { %>
+    <% speakers.forEach(speaker => { %>
        <li><img src="<%= speaker.photo %>" alt="" class="logo"> 🙋♂️ <%- speaker.first_name %> <%- speaker.last_name %> <%- speaker.bio %></li><br>
     <% }); %>
     </ul>
@@ -14,29 +16,25 @@
 <div class="col right">
     <h2>Talks</h2>
     <ul>
-    <% data.talks.forEach(talk => { %>
+    <% talks.forEach(talk => { %>
        <li> <strong>Speakers :</strong> <%- talk.speakers %></li>
        <li> <strong>Available Spaces :</strong> <%- talk.availableSpaces %> </li>
        <li> <strong>Title : </strong> <%- talk.title %> </li>
        <li> <strong>Description : </strong> <%- talk.description %> </li>
        <li> <strong>Duration : </strong> <%- talk.duration %> </li>
        <li> <strong>Talk @ : </strong> <%- talk.time %> </li>
-       <li> <strong>RSVP </strong> <%- talk.rsvp %> </li>
+       <li> <strong>RSVP </strong> <a href="<%- link %><%- talk.id %>" > <%- talk.rsvp %> </a> </li>
        <br>
     <% }); %>
     </ul>
 </div>
 
 <div class="col">
-<h2>Register</h2>
-   <form method="post" action="/register">
-        <label for="name">Please enter your full name: </label><br>
-        <input style="width:200px" id="name" type="text" name="name" placeholder="Full Name"><br>
-        <label for="email">Please enter your email address: </label><br>
-        <input style="width:200px" id="email" type="email" name="email" placeholder="Email Address"><br>
-        <input type="submit" id="register_form" value="Register">
-    </form>
-</div>
+
+
+<% if (sessionID) { %>
+    <a href="logout"><button>Logout</button></a>
+<% } %>
 
 </div>
 
@@ -51,6 +49,6 @@
 }
 
 .col.right {
-    flex:3;
+    flex:2;
 }
 </style>
