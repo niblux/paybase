@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const Talk = new mongoose.Schema({
     id:Number,
     speakers: String,
-    availableSpaces: Number,
+    availableSpaces: {
+        type:Number, 
+        max:30
+    },
     title: String,
     description:String,
     time:String, 
