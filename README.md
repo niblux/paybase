@@ -17,6 +17,13 @@ A step by step series of examples that tell you how to get a development env run
 What things you need to install the software and how to install them
 - Clone the project and run `npm install` to install necessary packages. 
 - Download and install MongoDB and setup a local database. 
+- You will need to create three collections named :
+	
+* attendees
+* speakers
+* talks
+Once you have the above collections follow the instructions below to uplaod the required dummy data.
+
 - Use the mongo shell to upload the provided json files using the following command :
  The files required are _speakers.json and _talks.json
 
