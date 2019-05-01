@@ -17,7 +17,12 @@ A step by step series of examples that tell you how to get a development env run
 What things you need to install the software and how to install them
 - Clone the project and run `npm install` to install necessary packages. 
 - Download and install MongoDB and setup a local database. 
-- You will need to create three collections named :
+
+- Create a database : you will be asked to provide a "database name" and a "collection name"
+
+- Name the database "paybase" and the collection "conference"
+
+- You will need to create three collections to setup the database for the api requests named :
 	
 * attendees
 * speakers
