@@ -22,6 +22,7 @@ What things you need to install the software and how to install them
 * attendees
 * speakers
 * talks
+
 Once you have the above collections follow the instructions below to uplaod the required dummy data.
 
 - Use the mongo shell to upload the provided json files using the following command :
