@@ -41,7 +41,7 @@ You will be presented with a login page, you will need to register to login.
 
 Click the registration link and provide and email address , username and password.
 
-After registering you will redirected back to the login page.
+After registering you will redirected back to the login page, you will be asked to enter the "email" and "password" your created when registering.
 
 Once you have Logged in you will be to view the talks and speakers and RSVP to talks by double clicking the RSVP of the chosen talk.
 
