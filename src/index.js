@@ -32,7 +32,6 @@ app.use((req, res, next) => {
 });
 
 // import seperate routes 
-// app.use(require('./routes/speaker'));
 app.use(require('./routes/attendee'), function(req, res, next){
     next();
 });
@@ -84,10 +83,8 @@ app.get('/', sessionChecker, (req, res, next) => {
 // render home page 
 app.get('/home', sessionChecker, async (req, res, next) => {
 
-    console.log(req.body)
-    console.log(req.query)
-
     if(req.query) {
+        // rsvp to talk
         Talks.findOne({id:req.query.id},(err, result) => {
             if(err) {
                 console.log(err)
@@ -111,6 +108,32 @@ app.get('/home', sessionChecker, async (req, res, next) => {
                 }
             }
         })
+
+        // decrement available spaces
+
+        Talks.findOne({ id: req.query.id }, (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                if (!result) {
+                    // res.status(404).send;
+                } else {
+                    if (req.query.rsvp) {
+                        result.availableSpaces = result.availableSpaces - 1;
+                    }
+
+                    result.save(async (err, updatedResult) => {
+                        if (err) {
+                            console.log(err);
+                            // res.status(500).send();
+                        } else {
+                            console.log("updated result", updatedResult);
+                            return updatedResult;
+                        }
+                    })
+                }
+            }
+        })
     }
 
     const talks = await Talks.find({}, (err) => {
@@ -120,8 +143,6 @@ app.get('/home', sessionChecker, async (req, res, next) => {
     const speakers = await Speakers.find({}, (err) => {
         // console.error('error speakers', err);
     });
-
-    // console.log(talks, speakers)
  
     app.locals.talks = talks;
     app.locals.speakers = speakers;
@@ -130,38 +151,6 @@ app.get('/home', sessionChecker, async (req, res, next) => {
 
     res.render('homepage', {
         link: `/home?rsvp=${flag}&id=`
-        // link: `/home?`,
-        // flag:flag
     });
 });
 
-// app.get('/home/:rsvp/talk/:id', async (req, res, next) => {
-//     console.log('params', req.params);
-//     console.log('query', req.query);
-//     if (req.query) {
-//         Talks.findByIdAndUpdate(
-//             // the id of the item to find
-//             req.params.id,
-
-//             // the change to be made. Mongoose will smartly combine your existing 
-//             // document with this change, which allows for partial updates too
-//             req.body,
-
-//             // an option that asks mongoose to return the updated version 
-//             // of the document instead of the pre-updated one.
-//             { new: true },
-
-//             // the callback function
-//             (err, todo) => {
-//                 // Handle any possible database errors
-//                 if (err) return res.status(500).send(err);
-//                 console.log(todo)
-//                 // return res.send(todo);
-//             }
-//         )
-//     }
-//     next();
-// });
-
-// app.get('/articles/:year/:month'
-// http://localhost/articles?year=2016&month

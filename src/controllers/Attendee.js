@@ -59,6 +59,7 @@ exports.loginPage = (req,res, next) => {
     res.render('login')
 }
 
+
 // GET for logout
 exports.logout = async (req, res, next) => { {
     if (req.session) {
