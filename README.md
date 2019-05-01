@@ -37,7 +37,4 @@ Once you have Logged in you will be to view the talks and speakers and RSVP to t
 
 * **Nabil Elidrissi** - *Initial work* - (https://github.com/niblux)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
